@@ -1,1 +1,24 @@
-This will be the nlife git repo :D
+This is Nlife, a ncurses game-of-life.
+See COPYING for copyright informations.
+
+To build this crap:
+
+cd src/
+make
+
+To start the program:
+./nlife XDIMENSION YDIMENSION
+
+ex:
+./nlife 300 300
+
+SPACE:  Give life or death to a cell or to put down a loaded unit.
+ARROWS:	Move the cursor.
+wasd:	Move the window.
+r:     	Run a generation.
+p:	Play/Pause.
+Q:     	Quit
+C:      Clear the field.
+l: 	Load unit from file.
+R:	Rotate loaded unit.
+
