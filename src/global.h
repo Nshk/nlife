@@ -54,7 +54,7 @@ make_field(field_struct *p_field_data);
 int
 do_move(int m, interface_struct *p_inter_data);
 
-int
+void
 do_win_move(int m, interface_struct *p_inter_data, field_struct *p_field_data);
 
 void

@@ -10,6 +10,7 @@ load_unit_ffile(interface_struct *p_inter_data)
   int oy = (LINES - (*p_inter_data).maxy * 1) / 2;
   int ox = (COLS - (*p_inter_data).maxx * 2) / 2;
   char filename[40];
+  char units_folder[60] = "units/";
   char line[100];
   char whait_t = 0;
   int max_lenght = 0;
@@ -25,8 +26,8 @@ load_unit_ffile(interface_struct *p_inter_data)
   attron(COLOR_PAIR(4));
   mvprintw((*p_inter_data).maxy + oy, ox, "Load from file:         ");
   mvgetnstr((*p_inter_data).maxy + oy, ox + 16 , filename, 39);
-
-  if(fp = fopen(filename, "r")) {
+  strcat(units_folder, filename);
+  if(fp = fopen(units_folder, "r")) {
     while (fgets(line, 100, fp)) {
       lenght = (strlen(line)) - 1;
       if(lenght > max_lenght)

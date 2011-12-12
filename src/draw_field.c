@@ -25,11 +25,13 @@ draw_field(interface_struct *p_inter_data, field_struct *p_field_data)
   int oy = (LINES - (*p_inter_data).maxy * 1) / 2;
   int ox = (COLS - (*p_inter_data).maxx * 2) / 2;
   char p;
+  char *str = "[]";
 
   init_pair(1, COLOR_BLACK, COLOR_GREEN);
   init_pair(2, COLOR_WHITE, COLOR_RED);
-  init_pair(3, COLOR_BLACK, COLOR_WHITE);
+  init_pair(3, COLOR_BLACK, COLOR_RED);
   init_pair(4, COLOR_WHITE, COLOR_BLUE);
+  init_pair(5, COLOR_BLACK, COLOR_YELLOW);
   clear();
 
   attron(COLOR_PAIR(4));
@@ -45,16 +47,20 @@ draw_field(interface_struct *p_inter_data, field_struct *p_field_data)
   attroff(COLOR_PAIR(4));
   for(y = 0; y < (*p_inter_data).maxy; ++y) {
       for(x = 0; x < (*p_inter_data).maxx; ++x) {
-	if ((y + (*p_inter_data).offset_y) < (*p_field_data).maxx
-	    && (x + (*p_inter_data).offset_x) < (*p_field_data).maxy) {
+	str = "[]";
+	if ((y + (*p_inter_data).offset_y) < ((*p_field_data).maxx - 1)
+	    && (x + (*p_inter_data).offset_x) < (*p_field_data).maxy - 1) {
 	  p = (*p_field_data).current_field[y + (*p_inter_data).offset_y][x + (*p_inter_data).offset_x];
+	} else {
+	  p = 3;
+	  str = "XX";
 	}
 	if(x == (*p_inter_data).curs_x && y == (*p_inter_data).curs_y) {
 	  p += 2;
 	}  
 	if(p) {
 	  attron(COLOR_PAIR(p));
-	  mvprintw(oy + y * 1,     ox + x * 2, "||");
+	  mvprintw(oy + y * 1,     ox + x * 2, str);
 	  attroff(COLOR_PAIR(p));
 	}
       }

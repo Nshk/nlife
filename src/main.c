@@ -43,8 +43,8 @@ main(int argc, char *argv[])
   field_data.generation = 0;
 
   if(argc == 3) {
-    x_dimension = atoi(argv[1]) + 1;
-    y_dimension = atoi(argv[2]) + 1;
+    x_dimension = atoi(argv[1]) + 2;
+    y_dimension = atoi(argv[2]) + 2;
     if(x_dimension < XBLOCKD || x_dimension > MAXX || 
        y_dimension < YBLOCKD || y_dimension > MAXY) {
       fprintf(stderr, "\nDimensions not permitted. min x: %d, max x: %d, min y: %d, max y: %d\n", XBLOCKD, MAXX, YBLOCKD, MAXY);
@@ -64,8 +64,8 @@ main(int argc, char *argv[])
   field_data.maxx = x_dimension;
   field_data.maxy = y_dimension;
   
-  inter_data.offset_x = ((x_dimension - 1) - inter_data.maxx) / 2;
-  inter_data.offset_y = ((y_dimension - 1) - inter_data.maxy) / 2;
+  inter_data.offset_x = (x_dimension - inter_data.maxx) / 2;
+  inter_data.offset_y = (y_dimension - inter_data.maxy) / 2;
 
   start_color();
   noecho();
@@ -88,13 +88,13 @@ main(int argc, char *argv[])
     case KEY_DOWN:  res = do_move(0, p_inter_data); break;
     case KEY_LEFT:  res = do_move(3, p_inter_data); break;
     case KEY_RIGHT: res = do_move(2, p_inter_data); break;
-    case 'w':       res = do_win_move(1, p_inter_data, p_field_data);
+    case 'w':       do_win_move(1, p_inter_data, p_field_data);
       break;
-    case 's':       res = do_win_move(0, p_inter_data, p_field_data);
+    case 's':       do_win_move(0, p_inter_data, p_field_data);
       break;
-    case 'a':       res = do_win_move(3, p_inter_data, p_field_data);
+    case 'a':       do_win_move(3, p_inter_data, p_field_data);
       break;
-    case 'd':       res = do_win_move(2, p_inter_data, p_field_data);
+    case 'd':       do_win_move(2, p_inter_data, p_field_data);
       break;
     case ' ':
       absolute_x = inter_data.curs_x + inter_data.offset_x;
@@ -103,12 +103,14 @@ main(int argc, char *argv[])
 	write_loaded_unit(absolute_x, absolute_y, p_inter_data, p_field_data);
 	unload_unit(p_inter_data);
 	unit_loaded = 0;
-      } else if(field_data.current_field[absolute_y][absolute_x] < 1) {
-	field_data.current_field[absolute_y][absolute_x] = 1;
-	lut_up(absolute_x, absolute_y, p_field_data);
-      } else {
-	field_data.current_field[absolute_y][absolute_x] = 0;
-	lut_down(absolute_x, absolute_y, p_field_data);
+      } else if(absolute_x < (field_data.maxx - 1) && absolute_y < (field_data.maxy - 1) ) {
+	if(field_data.current_field[absolute_y][absolute_x] < 1) {
+	  field_data.current_field[absolute_y][absolute_x] = 1;
+	  lut_up(absolute_x, absolute_y, p_field_data);
+	} else {
+	  field_data.current_field[absolute_y][absolute_x] = 0;
+	  lut_down(absolute_x, absolute_y, p_field_data);
+	}
       }
       break;
     case 'l': 
@@ -153,12 +155,12 @@ main(int argc, char *argv[])
 
 void set_win(interface_struct *p_inter_data, int x_dim, int y_dim)
 {
-  if(x_dim <= COLS / 2 - 1) {
-    (*p_inter_data).maxx = x_dim - 1;
+  if(x_dim <= COLS / 2) {
+    (*p_inter_data).maxx = x_dim - 2;
   } else {
-    (*p_inter_data).maxx = COLS / 2 - 1;
+    (*p_inter_data).maxx = (COLS - 1) / 2;
   }
-  if(y_dim <= LINES - 2) {
+  if(y_dim <= LINES) {
     (*p_inter_data).maxy = y_dim - 2;
   } else {
     (*p_inter_data).maxy = LINES - 2;
