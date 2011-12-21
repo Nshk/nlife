@@ -82,12 +82,11 @@ main(int argc, char *argv[])
 
   while(!quit) {
     c = getch();
-    int res = -1;
     switch(c) {
-    case KEY_UP:    res = do_move(1, p_inter_data); break;
-    case KEY_DOWN:  res = do_move(0, p_inter_data); break;
-    case KEY_LEFT:  res = do_move(3, p_inter_data); break;
-    case KEY_RIGHT: res = do_move(2, p_inter_data); break;
+    case KEY_UP:    do_move(1, p_inter_data); break;
+    case KEY_DOWN:  do_move(0, p_inter_data); break;
+    case KEY_LEFT:  do_move(3, p_inter_data); break;
+    case KEY_RIGHT: do_move(2, p_inter_data); break;
     case 'w':       do_win_move(1, p_inter_data, p_field_data);
       break;
     case 's':       do_win_move(0, p_inter_data, p_field_data);

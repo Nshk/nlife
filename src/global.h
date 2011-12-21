@@ -51,7 +51,7 @@ typedef struct {
 int
 make_field(field_struct *p_field_data);
 
-int
+void
 do_move(int m, interface_struct *p_inter_data);
 
 void

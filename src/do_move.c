@@ -17,7 +17,7 @@ This file is part of Nlife.
 **********************************************************************/
 #include "global.h"
 
-int
+void
 do_move(int m, interface_struct *p_inter_data)
 {
   int d[4][2] = {{0, +1}, {0, -1}, {+1, 0}, {-1, 0}};
@@ -26,11 +26,10 @@ do_move(int m, interface_struct *p_inter_data)
   int maxx =     (*p_inter_data).maxx;
   int maxy =     (*p_inter_data).maxy;
 
-  if(n_curs_x < 0 || n_curs_x >= maxx || n_curs_y < 0 || n_curs_y >= maxy)
-     return 0;
-
-  (*p_inter_data).curs_x = n_curs_x;
-  (*p_inter_data).curs_y = n_curs_y;
-  
-  return 1;
+  if(n_curs_x < 0 || n_curs_x >= maxx || n_curs_y < 0 || n_curs_y >= maxy) {
+    ;
+  } else {
+    (*p_inter_data).curs_x = n_curs_x;
+    (*p_inter_data).curs_y = n_curs_y;
+  }
 }

@@ -32,7 +32,7 @@ life_cycle(field_struct *p_field_data)
   lut_lines = (*p_field_data).maxy / YBLOCKD + 1;
   lut_cols = (*p_field_data).maxx / XBLOCKD + 1;
 
-  //robaccia per evitare il bordo sup-sin XD
+  /*robaccia per evitare il bordo sup-sin XD*/
  
   for(line = 0; line < 1; line++) {
     for(col = 0; col < 1; col++) {
@@ -93,7 +93,6 @@ life_cycle(field_struct *p_field_data)
     }
   }
 for(line = 1; line < lut_lines; line++) {
-  //for(col = 0; col < 1; col++) {
   col = 0;
   if((*p_field_data).field_lut[line][col] > 0) {
     
