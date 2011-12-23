@@ -48,8 +48,8 @@ draw_field(interface_struct *p_inter_data, field_struct *p_field_data)
   for(y = 0; y < (*p_inter_data).maxy; ++y) {
       for(x = 0; x < (*p_inter_data).maxx; ++x) {
 	str = "[]";
-	if ((y + (*p_inter_data).offset_y) < ((*p_field_data).maxx - 1)
-	    && (x + (*p_inter_data).offset_x) < (*p_field_data).maxy - 1) {
+	if ((y + (*p_inter_data).offset_y) < ((*p_field_data).maxy - 1)
+	    && (x + (*p_inter_data).offset_x) < (*p_field_data).maxx - 1) {
 	  p = (*p_field_data).current_field[y + (*p_inter_data).offset_y][x + (*p_inter_data).offset_x];
 	} else {
 	  p = 3;

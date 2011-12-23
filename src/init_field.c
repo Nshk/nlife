@@ -26,8 +26,5 @@ init_field(field_struct *p_field_data)
   for(y = 0; y < maxy; ++y)
     for(x = 0; x < maxx; ++x) {
       (*p_field_data).current_field[y][x] = 0;
-#ifdef OLD
-      (*p_field_data).old_field[y][x] = 0;
-#endif
     }
 }
