@@ -26,3 +26,12 @@ lut_up(int x, int y, field_struct *p_field_data)
 
   (*p_field_data).field_lut[lut_y][lut_x] += 1;
 }
+
+void
+lut_down(int x, int y, field_struct *p_field_data)
+{
+  int lut_x = x / XBLOCKD;
+  int lut_y = y / YBLOCKD;
+
+  (*p_field_data).field_lut[lut_y][lut_x] -= 1;
+}
