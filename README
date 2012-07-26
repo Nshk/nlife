@@ -7,7 +7,7 @@ cd src/
 make
 
 To start the program:
-./nlife XDIMENSION YDIMENSION
+./nlife [XDIM] [YDIM]
 
 ex:
 ./nlife 300 300
